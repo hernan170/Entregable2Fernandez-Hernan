@@ -1,11 +1,12 @@
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+header{
+ display: flex;
+ gap: 10px;
+ padding: 50px;
+ 
+
 }
 body{
-    background-image: url(https://media.istockphoto.com/id/1308626092/es/vector/rosquillas-con-esmalte-rosa-y-espolvoreados-de-colores-sobre-el-fondo-del-cielo-azul-patr%C3%B3n.jpg?s=612x612&w=0&k=20&c=3iOBR9L_LJredrAvxOGpRA5OU67hH9kQVwn8o1gU8kU=);
-   
+ background-image: url(https://media.istockphoto.com/id/1308626092/es/vector/rosquillas-con-esmalte-rosa-y-espolvoreados-de-colores-sobre-el-fondo-del-cielo-azul-patr%C3%B3n.jpg?s=612x612&w=0&k=20&c=3iOBR9L_LJredrAvxOGpRA5OU67hH9kQVwn8o1gU8kU=);
 }
 #talkingButton {
   background-color: #FFFA70; 
@@ -14,20 +15,35 @@ body{
   font-size: 1.2em;
   font-weight: bold;
   color: #000;
-  text-shadow: 1px 1px 0 #FFF, -1px -1px 0 #FFF; /* Sombra blanca para un efecto de relieve */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 3px 3px 0 #666; /* Sombra para darle profundidad */
+  text-shadow: 1px 1px 0 #FFF, -1px -1px 0 #FFF;
+  border-radius: 8px; 
+  box-shadow: 3px 3px 0 #666; 
   cursor: pointer;
-  transition: all 0.2s ease-in-out; /* Transición suave para efectos hover */
+  transition: all 0.2s ease-in-out;
 }
 
 #talkingButton:hover {
-  background-color: #FFFF99; /* Amarillo más claro al pasar el ratón */
-  box-shadow: 5px 5px 0 #888; /* Sombra más pronunciada al pasar el ratón */
-  transform: translate(-2px, -2px); /* Ligeramente hacia arriba y a la izquierda */
+  background-color: #FFFF99; 
+  box-shadow: 5px 5px 0 #888; 
+  transform: translate(-2px, -2px);
 }
 
 #talkingButton:active {
-  box-shadow: 1px 1px 0 #666; /* Sombra más pequeña al hacer clic */
-  transform: translate(1px, 1px); /* Ligeramente hacia abajo y a la derecha */
+  box-shadow: 1px 1px 0 #666; 
+  transform: translate(1px, 1px);
+}
+@media screen {
+    h1{
+       
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+    header{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
 }
