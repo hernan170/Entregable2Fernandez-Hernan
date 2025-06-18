@@ -2,9 +2,7 @@ header{
  display: flex;
  gap: 10px;
  padding: 50px;
- 
-
-}
+ }
 body{
  background-image: url(https://media.istockphoto.com/id/1308626092/es/vector/rosquillas-con-esmalte-rosa-y-espolvoreados-de-colores-sobre-el-fondo-del-cielo-azul-patr%C3%B3n.jpg?s=612x612&w=0&k=20&c=3iOBR9L_LJredrAvxOGpRA5OU67hH9kQVwn8o1gU8kU=);
 }
