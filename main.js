@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Referencias a Elementos del DOM ---
     const welcomeSection = document.getElementById('welcomeSection');
-    const userNmeInput = document.getElementById('userNameInput');
+    const userNameInput = document.getElementById('userNameInput');
     const submitUserNameButton = document.getElementById('submitUserName');
     const welcomeMessageDisplay = document.getElementById('welcomeMessage');
     const talkingButtonSection = document.getElementById('talkingButtonSection');
@@ -12,21 +12,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const appConsoleOutput = document.getElementById('appConsoleOutput');
     const btnClearConsole = document.getElementById('btnClearConsole');
 
-// --- Constantes y Variables de Estado ---
-const buttonPhrases = [
-    "Hola, ¿cómo estás?",
-    "¡Qué gusto verte!",
-    "Este es un botón parlante.",
-    "Que tengas un excelente día.",
-    "¿Necesitas algo ?",
-    "¡Volve pronto!"
-];
+    // --- Constantes y Variables de Estado ---
+    const buttonPhrases = [
+        "Hola, ¿cómo estás?",
+        "¡Qué gusto verte!",
+        "Este es un botón parlante.",
+        "Que tengas un excelente día.",
+        "¿Necesitas algo?",
+        "¡Vuelve pronto!"
+    ];
 
-const LOCAL_STORAGE_PRESS_COUNT_KEY = 'talkingButton_pressCount';
-const LOCAL_STORAGE_USER_NAME_KEY = 'talkingButton_userName';
- 
-  let pressCount = 0; // Contador de veces que se ha presionado el botón
-  let userName = '';    // Nombre del usuario
+    const LOCAL_STORAGE_PRESS_COUNT_KEY = 'talkingButton_pressCount';
+    const LOCAL_STORAGE_USER_NAME_KEY = 'talkingButton_userName';
+
+    let pressCount = 0; // Contador de veces que se ha presionado el botón
+    let userName = '';    // Nombre del usuario
 
     // --- Funciones Auxiliares para Interacción con el DOM ---
 
@@ -67,7 +67,7 @@ const LOCAL_STORAGE_USER_NAME_KEY = 'talkingButton_userName';
     // --- Funciones Principales de la Lógica ---
 
     /**
-
+     * Selecciona una frase aleatoria del array `buttonPhrases`.
      * @returns {string} Una frase aleatoria.
      */
     function getRandomPhrase() {
@@ -118,5 +118,57 @@ const LOCAL_STORAGE_USER_NAME_KEY = 'talkingButton_userName';
         saveDataToLocalStorage(); // Guarda el contador en localStorage
     }
 
+    /**
+     * Reinicia el contador de presiones.
+     */
+    function resetPressCount() {
+        pressCount = 0;
+        updatePressCountDisplay();
+        saveDataToLocalStorage();
+        phraseDisplay.textContent = "Contador reiniciado. ¡Hazme hablar de nuevo!";
+        welcomeMessageDisplay.textContent = "¡Contador reiniciado! ¡Empieza de nuevo!";
+        welcomeMessageDisplay.className = "alert alert-success text-center";
+        logToAppConsole("Contador de interacciones reiniciado.", 'success');
+        toggleResetButton(false); // Oculta el botón de reiniciar
+    }
 
-});
+    /**
+     * Gestiona la entrada del nombre de usuario.
+     */
+    function handleUserNameSubmit() {
+        const inputName = userNameInput.value.trim();
+        if (inputName) {
+            userName = inputName;
+            localStorage.setItem(LOCAL_STORAGE_USER_NAME_KEY, userName);
+            welcomeMessageDisplay.textContent = `¡Hola, ${userName}! Haz clic en el botón para que hable.`;
+            welcomeMessageDisplay.className = "alert alert-success text-center";
+            logToAppConsole(`Usuario: <strong>${userName}</strong> ha iniciado la aplicación.`);
+            
+            // Oculta la sección de bienvenida y muestra la del botón
+            welcomeSection.classList.add('d-none');
+            talkingButtonSection.classList.remove('d-none');
+        } else {
+            welcomeMessageDisplay.textContent = "Por favor, ingresa un nombre válido.";
+            welcomeMessageDisplay.className = "alert alert-warning text-center";
+            logToAppConsole("ADVERTENCIA: Intento de inicio de sesión con nombre vacío.", 'warning');
+        }
+    }
+
+    /**
+     * Limpia el contenido de la consola de la aplicación.
+     */
+    function clearAppConsole() {
+        appConsoleOutput.innerHTML = '<p><strong>Registro de Actividad:</strong></p>';
+        logToAppConsole('Registro de actividad limpiado.', 'secondary');
+    }
+
+    // --- Gestión de LocalStorage ---
+
+    /**
+     * Carga el contador de presiones y el nombre de usuario desde localStorage.
+     */
+    function loadDataFromLocalStorage() {
+        const storedCount = localStorage.getItem(LOCAL_STORAGE_PRESS_COUNT_KEY);
+        const storedUserName = localStorage.getItem(LOCAL_STORAGE_USER_NAME_KEY);
+
+      
