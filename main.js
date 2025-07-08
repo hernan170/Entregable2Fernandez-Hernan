@@ -171,4 +171,50 @@ document.addEventListener('DOMContentLoaded', () => {
         const storedCount = localStorage.getItem(LOCAL_STORAGE_PRESS_COUNT_KEY);
         const storedUserName = localStorage.getItem(LOCAL_STORAGE_USER_NAME_KEY);
 
-      
+        if (storedCount !== null) {
+            pressCount = parseInt(storedCount);
+            logToAppConsole(`Contador de presiones cargado desde LocalStorage: ${pressCount}.`);
+        } else {
+            logToAppConsole('Contador de presiones no encontrado en LocalStorage. Iniciando en 0.');
+        }
+
+        if (storedUserName) {
+            userName = storedUserName;
+            logToAppConsole(`Nombre de usuario cargado desde LocalStorage: <strong>${userName}</strong>.`);
+            // Si el nombre ya está, saltamos la sección de bienvenida
+            welcomeSection.classList.add('d-none');
+            talkingButtonSection.classList.remove('d-none');
+            welcomeMessageDisplay.textContent = `¡Bienvenido de nuevo, ${userName}! Haz clic en el botón.`;
+            welcomeMessageDisplay.className = "alert alert-success text-center";
+        } else {
+            logToAppConsole('Nombre de usuario no encontrado en LocalStorage. Pidiendo nombre.');
+            welcomeSection.classList.remove('d-none'); // Asegura que la sección de bienvenida esté visible
+            talkingButtonSection.classList.add('d-none'); // Asegura que la sección del botón esté oculta
+        }
+        updatePressCountDisplay(); // Actualiza el display del contador al cargar
+    }
+
+    /**
+     * Guarda el contador de presiones y el nombre de usuario en localStorage.
+     */
+    function saveDataToLocalStorage() {
+        localStorage.setItem(LOCAL_STORAGE_PRESS_COUNT_KEY, pressCount.toString());
+        // El nombre de usuario ya se guarda al enviarlo
+        logToAppConsole('Datos guardados en LocalStorage.', 'info');
+    }
+
+    // --- Event Listeners ---
+    submitUserNameButton.addEventListener('click', handleUserNameSubmit);
+    userNameInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleUserNameSubmit();
+        }
+    });
+    talkingButton.addEventListener('click', activateButton);
+    resetCountButton.addEventListener('click', resetPressCount);
+    btnClearConsole.addEventListener('click', clearAppConsole);
+
+    // --- Inicialización de la Aplicación ---
+    loadDataFromLocalStorage(); // Carga los datos al iniciar
+    logToAppConsole("Aplicación 'Simulador de Botón Parlante' cargada y lista.");
+});
