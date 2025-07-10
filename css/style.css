@@ -1,56 +1,227 @@
+/* --- Estilos Generales y Reset Básico --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Incluye padding y border en el ancho/alto */
+}
 
-body{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body {
+    font-family: Arial, sans-serif;
+    color: white; /* Color de texto por defecto para todo el body */
+    overflow-x: hidden; /* Evita barras de desplazamiento horizontales */
+    background-color: black; /* Color de fondo si el canvas no carga */
     line-height: 1.6;
-
 }
 
-/* Ajustes generales para las tarjetas */
-
-.card{
-    border-radius: 0.75rem;
-    overflow: hidden;
+/* --- Estilos del Canvas (Fondo de Estrellas) --- */
+canvas {
+    display: block;
+    position: fixed; /* Fija el canvas al fondo */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Asegura que cubra todo el ancho del viewport */
+    height: 100vh; /* Asegura que cubra toda la altura del viewport */
+    z-index: -1; /* Envía el canvas detrás de todo lo demás */
+    background-color: black; /* Fondo negro para el canvas */
 }
 
-.card-header{
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-    border-top-left-radius: 0.75rem !important;
-    border-top-right-radius: 0.75rem !important;
+/* --- Estilos del Header --- */
+header {
+    background-color: rgba(9, 9, 58, 0.8); /* Fondo semi-transparente para ver las estrellas */
+    padding: 15px 20px; /* Padding ajustado */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Alinea el título y el botón */
+    position: fixed; /* Fija el header en la parte superior */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2; /* Asegura que el header esté sobre el contenido y el canvas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilos para los botones */
-
-.btn{
-    font-weight: 500;
-    border-radius: 0.5rem;
-    transition: all 0.2s ease-in-out;
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #fff;
 }
 
-/* Consola de la aplicación */
-
-#appConsoleOutput{
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9rem;
-    white-space: pre-wrap; /* Mantiene el formato del texto, incluyendo saltos de línea */
-    word-break: break-all; /* Rompe palabras largas para evitar desbordamiento */
-
+/* --- Estilos del Botón del Menú (Hamburguesa) --- */
+.menu-button {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 2px solid white;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    z-index: 1000; /* Asegura que esté por encima de todo */
 }
 
-#appConsoleOutput p {
-     margin-bottom: 0.25rem;
-     line-height: 1.3;
+.menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #007bff; /* Un color de acento al pasar el mouse */
 }
 
-/* Mensajes de bienvenida y frase */
-#welcomeMessage, #phraseDisplay {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #2ecc71;
+/* --- Estilos del Menú Lateral (Sidebar) --- */
+.sidenav {
+    height: 100%; /* Ocupa toda la altura */
+    width: 0; /* Ancho inicial: oculto */
+    position: fixed; /* Fijo en la pantalla */
+    z-index: 999; /* Por encima del canvas, debajo del botón */
+    top: 0;
+    left: 0;
+    background-color: rgba(7, 6, 72, 0.9); /* Fondo más opaco y oscuro */
+    overflow-x: hidden; /* Oculta contenido que desborda horizontalmente */
+    transition: 0.5s; /* Transición suave para abrir/cerrar */
+    padding-top: 60px; /* Espacio superior para el botón de cierre */
+    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+    box-sizing: border-box; /* Asegura que padding no aumente el ancho total */
 }
 
-/* Estilos para el contador de presiones */
+.sidenav a {
+    padding: 15px 8px 15px 32px; /* Aumenta el padding vertical */
+    text-decoration: none;
+    font-size: 20px; /* Ajustado para mejor lectura en sidebar */
+    color: #bbb; /* Color de enlace más suave */
+    display: block;
+    transition: 0.3s;
+}
 
-#pressCountDisplay {
-    min-width: 40px; /* Ancho mínimo para que no se mueva */
-    display: inline-block;
+.sidenav a:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 15px; /* Alinea con el padding del header */
+    right: 25px;
+    font-size: 36px;
+    color: #fff; /* Color blanco para el botón de cierre */
+}
+
+/* --- Contenido Principal --- */
+.main-content {
+    margin-left: 0; /* Sin margen inicial */
+    padding: 80px 20px 20px 20px; /* Padding superior para no solaparse con el header fijo */
+    transition: margin-left 0.5s; /* Transición para cuando el menú empuja el contenido */
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté por encima del canvas */
+    box-sizing: border-box;
+    max-width: 1200px; /* Ancho máximo para el contenido */
+    margin: 80px auto 20px auto; /* Centrar el contenido y ajustar margen superior */
+    background-color: rgba(25, 25, 112, 0.7); /* Fondo semi-transparente para el contenido */
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.main-content section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.main-content section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.main-content h2 {
+    color: #00bfff; /* Azul brillante para títulos de sección */
+    font-size: 2em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.main-content p {
+    color: #e0e0e0; /* Texto ligeramente más claro para párrafos */
+    text-align: justify;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: rgba(30, 30, 30, 0.8);
+    color: #bbb;
+    text-align: center;
+    padding: 15px 20px;
+    z-index: 1; /* Asegura que el footer esté sobre el canvas */
+    position: relative; /* Necesario para z-index */
+}
+
+/* --- Media Queries --- */
+
+/* Teléfonos (hasta 767px) - El menú lateral se superpone */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        width: 0; /* Asegura que esté oculto por defecto */
+        padding-top: 60px; /* Espacio para el header fijo */
+    }
+
+    .main-content {
+        margin-left: 0; /* No hay empuje de contenido */
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+}
+
+/* Tabletas y Escritorios Pequeños (768px y más) - El menú lateral empuja el contenido */
+@media screen and (min-width: 768px) {
+    .menu-button {
+        display: none; /* Oculta el botón de hamburguesa en desktop */
+    }
+
+    .sidenav {
+        width: 250px; /* Menú lateral siempre visible */
+        position: fixed; /* Fijo en la pantalla */
+        height: 100%; /* Ocupa toda la altura */
+        padding-top: 80px; /* Espacio para el header fijo */
+        background-color: rgba(7, 6, 72, 0.9); /* Fondo visible */
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .sidenav a {
+        font-size: 18px; /* Tamaño de fuente más pequeño para desktop */
+    }
+
+    .sidenav .closebtn {
+        display: none; /* No se necesita botón de cierre */
+    }
+
+    .main-content {
+        margin-left: 250px; /* Deja espacio para el menú lateral */
+        padding-top: 80px; /* Ajuste para el header fijo */
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    
+    header {
+        justify-content: flex-end; /* Alinea el título a la derecha si no hay botón de menú */
+    }
+    header h1 {
+        margin-right: auto; /* Empuja el título a la izquierda */
+        margin-left: 270px; /* Ajusta para el menú lateral */
+    }
+}
+
+/* Escritorios Grandes (1024px y más) */
+@media screen and (min-width: 1024px) {
+    .sidenav {
+        width: 300px; /* Menú lateral un poco más ancho */
+    }
+
+    .main-content {
+        margin-left: 300px; /* Más espacio para el menú más ancho */
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    header h1 {
+        margin-left: 320px; /* Ajusta para el menú lateral más ancho */
+    }
 }

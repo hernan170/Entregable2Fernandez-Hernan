@@ -3,65 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boton simulador</title>
-    <script src ="./main.js"defer></script>
-    <link rel="stylesheet" href="./css/style.css"> 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <title>Fondo Estelar Responsivo con Menú Lateral</title>
+    <meta name="description" content="Una aplicación web con un fondo de estrellas animado y un menú lateral responsivo.">
+    <meta name="keywords" content="estrellas, fondo animado, responsivo, menú lateral, javascript, html, css">
+    <meta name="author" content="Tu Nombre">
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./main.js"></script>
 </head>
-<body class="bg-dark text-light">
-    <header class="bg-primary text-white text-center py_4 shadow">
-        <div class="container"> 
-          <h1>Simulador</h1>
-        </div>
+<body>
+
+    <!-- Canvas para el fondo de estrellas (será manipulado por JavaScript) -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Header de la página -->
+    <header>
+        <!-- Botón para abrir el menú lateral -->
+        <button id="menu-button" class="menu-button">☰</button>
+
+        <!-- Menú Lateral (Sidenav) -->
+        <nav id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" id="closebtn" class="closebtn">&times;</a>
+            <a href="#">Inicio</a>
+            <a href="#">Acerca de</a>
+            <a href="#">Servicios</a>
+            <a href="#">Contacto</a>
+        </nav>
+        <h1>Mi Aplicación Estelar</h1>
     </header>
-    <main class="container my-5">
-        <!--Seccion de Bienvenida y Entrada de Nombre -->
 
-        <section id="welcomeSection" class="card mb-4 shadow-sm">
-            <div class="card-header bg-info text-white">
-                 <h2 class="h5 mb-0">Bienvenido</h2>
-            </div>
-            <div class="card-body text-center">
-                <p>Para empezar, por favor di tu nombre:</p>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="userNameInput">
-                    <button class="btn btn-primary" type="button" id="submitUserName">Entrar</button>
-                </div>
-                <div id="welcomeMessage" class="mt-3"></div>
-            </div>
+    <!-- Contenido principal de la página -->
+    <main id="main-content" class="main-content">
+        <section>
+            <h2>Explora el Cosmos</h2>
+            <p>Bienvenido a nuestra aplicación con un fascinante fondo estelar. Utiliza el menú lateral para navegar.</p>
+            <p>Este contenido se ajusta para dejar espacio al menú en pantallas grandes y se superpone en móviles.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
         </section>
-
-        <!-- Sección del Botón Parlante -->
-        <Section id="talkingButtonSection" class="card mb-4 shadow-sm d-none">
-            <div class="card-header bg-success text-white">
-                <h2 class="h5 mb-0">Interacción con el Botón</h2>
-            </div>
-            <div class="card-body text-center">
-                <p class="mb-3">Presiona el botón para escuchar una frase. Observa el contador y las interacciones.</p>
-                <button id="talkingButton" class="btn btn-success btn-lg mb-3">Has que Hable</button>
-                <p class="lead">Última frase: <strong id="phraseDisplay">Esperando interacción...</strong></p>
-                <p>Veces presionado<span id="pressCountDisplay" class="badge bg-primary fs-5">0</span></p>
-                 <button id="resetCountButton" class="btn btn-warning mt-3 d-none">Reiniciar Contador</button>
-            </div>
-        </section>
-        <!-- Sección de Registro de Actividad (Consola de la App) -->
-        <section class="card shadow-sm">
-            <div class="card-header bg-secondary text-white">
-                <h2 class="h5 mb-0">Registro de Actividad (Consola de la App)</h2>
-            </div>
-            <div class="card-body bg-dark text-white-50" style="max-height: 300px; overflow-y: auto;">
-                <div id="appConsoleOutput">
-                    <p><strong>Inicio de la aplicación:</strong></p>
-                </div>
-            </div>
+        <section>
+            <h2>Nuestra Misión</h2>
+            <p>Conectando ideas a través del universo digital. Descubre nuevas posibilidades.</p>
+            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
         </section>
     </main>
-     
-    <footer class="bg-dark text-white-50 text-center py-3 mt-5">
-        <div class="container">
-            <p>&copy;2024 Simulador Botón Parlante. Todos los derechos reservados. </p>
-        </div>
+
+    <footer>
+        <p>&copy; 2025 Aplicación Estelar. Todos los derechos reservados.</p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 </html>
