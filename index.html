@@ -3,52 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fondo Estelar Responsivo con Menú Lateral</title>
-    <meta name="description" content="Una aplicación web con un fondo de estrellas animado y un menú lateral responsivo.">
-    <meta name="keywords" content="estrellas, fondo animado, responsivo, menú lateral, javascript, html, css">
-    <meta name="author" content="Tu Nombre">
+    <title>Proyecto Final: Cotizador Estelar</title>
+    <meta name="description" content="Simulador interactivo de cotización de viajes espaciales.">
     <link rel="stylesheet" href="./css/style.css">
-    <script defer src="./main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./main.js"defer></script>
 </head>
 <body>
 
-    <!-- Canvas para el fondo de estrellas (será manipulado por JavaScript) -->
     <canvas id="starfield"></canvas>
 
-    <!-- Header de la página -->
     <header>
-        <!-- Botón para abrir el menú lateral -->
         <button id="menu-button" class="menu-button">☰</button>
-
-        <!-- Menú Lateral (Sidenav) -->
         <nav id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" id="closebtn" class="closebtn">&times;</a>
-            <a href="#">Inicio</a>
-            <a href="#">Acerca de</a>
-            <a href="#">Servicios</a>
-            <a href="#">Contacto</a>
+            <a href="#home">Inicio</a>
+            <a href="#simulator">Simulador</a>
+            <a href="#about">Acerca de</a>
         </nav>
-        <h1>Mi Aplicación Estelar</h1>
+        <h1>Cotizador Estelar</h1>
     </header>
 
-    <!-- Contenido principal de la página -->
     <main id="main-content" class="main-content">
-        <section>
-            <h2>Explora el Cosmos</h2>
-            <p>Bienvenido a nuestra aplicación con un fascinante fondo estelar. Utiliza el menú lateral para navegar.</p>
-            <p>Este contenido se ajusta para dejar espacio al menú en pantallas grandes y se superpone en móviles.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-        </section>
-        <section>
-            <h2>Nuestra Misión</h2>
-            <p>Conectando ideas a través del universo digital. Descubre nuevas posibilidades.</p>
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-        </section>
-    </main>
+        </main>
 
     <footer>
-        <p>&copy; 2025 Aplicación Estelar. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Proyecto Final. Todos los derechos reservados.</p>
     </footer>
 
 </body>

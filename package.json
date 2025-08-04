@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Kepler-186f",
+    "distance": 500,
+    "description": "Un planeta rocoso en la zona habitable de su estrella."
+  },
+  {
+    "id": 2,
+    "name": "Próxima Centauri b",
+    "distance": 4,
+    "description": "El exoplaneta más cercano conocido a la Tierra."
+  },
+  {
+    "id": 3,
+    "name": "TRAPPIST-1e",
+    "distance": 40,
+    "description": "Uno de los siete planetas de un sistema con varias zonas habitables."
+  },
+  {
+    "id": 4,
+    "name": "Gliese 667 Cc",
+    "distance": 22,
+    "description": "Super-Tierra en un sistema de triple estrella."
+  },
+  {
+    "id": 5,
+    "name": "Luyten b",
+    "distance": 12,
+    "description": "Un planeta potencialmente habitable en órbita de una enana roja."
+  }
+]

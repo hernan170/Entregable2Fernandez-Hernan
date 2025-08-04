@@ -115,30 +115,84 @@ header h1 {
     background-color: rgba(25, 25, 112, 0.7); /* Fondo semi-transparente para el contenido */
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    min-height: calc(100vh - 170px); /* Asegura que ocupe el espacio sin el header/footer */
 }
 
-.main-content section {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+.view-section {
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
-.main-content section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.main-content h2 {
+.view-section h2 {
     color: #00bfff; /* Azul brillante para títulos de sección */
     font-size: 2em;
     margin-bottom: 15px;
     text-align: center;
 }
 
-.main-content p {
+.view-section p {
     color: #e0e0e0; /* Texto ligeramente más claro para párrafos */
     text-align: justify;
+    margin-bottom: 1em;
+}
+
+/* --- Estilos del Simulador (Formulario) --- */
+.simulator-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.simulator-form label {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+.simulator-form input, .simulator-form select {
+    padding: 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 1em;
+}
+.simulator-form input::placeholder, .simulator-form select {
+    color: #ccc;
+}
+.simulator-form button {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.simulator-form button:hover {
+    background-color: #0056b3;
+}
+
+#result-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid #00bfff;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#result-container h3 {
+    color: #00bfff;
+    margin-bottom: 10px;
 }
 
 /* --- Footer --- */
@@ -149,6 +203,7 @@ footer {
     padding: 15px 20px;
     z-index: 1; /* Asegura que el footer esté sobre el canvas */
     position: relative; /* Necesario para z-index */
+    margin-top: auto;
 }
 
 /* --- Media Queries --- */
