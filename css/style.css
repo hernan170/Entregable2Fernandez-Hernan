@@ -226,44 +226,7 @@ footer {
     }
 }
 
-/* Tabletas y Escritorios Pequeños (768px y más) - El menú lateral empuja el contenido */
-@media screen and (min-width: 768px) {
-    .menu-button {
-        display: none; /* Oculta el botón de hamburguesa en desktop */
-    }
 
-    .sidenav {
-        width: 250px; /* Menú lateral siempre visible */
-        position: fixed; /* Fijo en la pantalla */
-        height: 100%; /* Ocupa toda la altura */
-        padding-top: 80px; /* Espacio para el header fijo */
-        background-color: rgba(7, 6, 72, 0.9); /* Fondo visible */
-        border-right: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .sidenav a {
-        font-size: 18px; /* Tamaño de fuente más pequeño para desktop */
-    }
-
-    .sidenav .closebtn {
-        display: none; /* No se necesita botón de cierre */
-    }
-
-    .main-content {
-        margin-left: 250px; /* Deja espacio para el menú lateral */
-        padding-top: 80px; /* Ajuste para el header fijo */
-        padding-left: 30px;
-        padding-right: 30px;
-    }
-    
-    header {
-        justify-content: flex-end; /* Alinea el título a la derecha si no hay botón de menú */
-    }
-    header h1 {
-        margin-right: auto; /* Empuja el título a la izquierda */
-        margin-left: 270px; /* Ajusta para el menú lateral */
-    }
-}
 
 /* Escritorios Grandes (1024px y más) */
 @media screen and (min-width: 1024px) {
