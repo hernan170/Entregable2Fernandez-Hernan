@@ -1,0 +1,9 @@
+{
+  "welcome": "¡Bienvenido al Cotizador Estelar! ¿En qué puedo ayudarte hoy? Puedes preguntarme sobre los destinos o sobre cómo usar el simulador.",
+  "hola": "¡Hola! ¿Cómo estás?",
+  "gracias": "De nada. ¿Necesitas algo más?",
+  "ayuda": "Para usar el simulador, selecciona un planeta o ingresa una distancia en años luz, y luego define la velocidad de tu nave para calcular el tiempo de viaje.",
+  "cotizador": "El cotizador te permite calcular el tiempo de viaje a planetas lejanos basándose en la distancia y la velocidad de tu nave.",
+  "destinos": "Actualmente, ofrecemos viajes a Kepler-186f, Próxima Centauri b y otros emocionantes destinos.",
+  "default": "Lo siento, no entendí tu pregunta. Por favor, intenta de nuevo o pregúntame sobre 'ayuda', 'cotizador' o 'destinos'."
+}

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./main.js" defer></script>
+    <script src="./chatbot.js" defer></script>
 </head>
 <body>
 
@@ -27,9 +28,22 @@
     <main id="main-content" class="main-content">
     </main>
 
-    <footer>
+  
+    <button id="chatbot-toggle-btn" class="chatbot-toggle-btn">💬</button>
+    <div id="chatbot-container" class="chatbot-container">
+        <div class="chatbot-header">
+            <h3>Asistente Estelar</h3>
+            <button id="chatbot-close-btn">&times;</button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages"></div>
+        <form id="chatbot-form" class="chatbot-form">
+            <input type="text" id="chatbot-input" placeholder="Escribe un mensaje..." required>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+      <footer>
         <p>&copy; 2025 Proyecto Final. Todos los derechos reservados.</p>
     </footer>
-
 </body>
 </html>

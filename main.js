@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', async () => {
 
     // === Referencias y Constantes ===
-    const [canvas, menuButton, sidenav, closeBtn, mainContent] = 
-        ['starfield', 'menu-button', 'mySidenav', 'closebtn', 'main-content']
+    const [canvas, menuButton, sidenav, closeBtn, mainContent] =
+        ['starfield', 'menu-button', 'mySidenav', 'closeBtn', 'main-content']
         .map(id => document.getElementById(id));
-    
+
     let ctx = null;
     let stars = [];
     let planetsData = [];
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const width = isOpen ? "250px" : "0";
         if (sidenav) sidenav.style.width = width;
     };
-    
+
     const fetchPlanetsData = async () => {
         try {
             const response = await fetch('mainpackage.json');
@@ -57,15 +57,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             return [];
         }
     };
-    
+
     const views = {
         '#home': `
-            <section id="home">
+            <section id="home" class="view-section">
                 <h2>Bienvenido a la Central de Viajes Estelares</h2>
                 <p>Descubre destinos y planifica tu próxima aventura galáctica.</p>
             </section>`,
         '#about': `
-            <section id="about">
+            <section id="about" class="view-section">
                 <h2>Acerca de Nosotros</h2>
                 <p>Empresa dedicada a la simulación de viajes interestelares.</p>
             </section>`
@@ -73,45 +73,80 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const renderSimulator = (planets) => {
         const lastDistance = localStorage.getItem('lastTravelDistance') || '';
+        const lastSpeed = localStorage.getItem('lastTravelSpeed') || '50';
         const options = planets.map(p => `<option value="${p.distance}">${p.name} (${p.distance} años luz)</option>`).join('');
         mainContent.innerHTML = `
-            <section id="simulator">
+            <section id="simulator" class="view-section">
                 <h2>Simulador de Viajes</h2>
-                <form id="simulator-form">
+                <form id="simulator-form" class="simulator-form">
                     <label>Selecciona un destino:</label>
-                    <select id="planet-select">${options}</select>
-                    <label>O ingresa la distancia:</label>
-                    <input type="number" id="distance-input" value="${lastDistance}" min="0">
+                    <select id="planet-select" class="form-control">
+                        <option value="">-- O elige una opción --</option>
+                        ${options}
+                    </select>
+                    <label>O ingresa la distancia (años luz):</label>
+                    <input type="number" id="distance-input" class="form-control" value="${lastDistance}" min="0">
                     <label>Velocidad de la nave (% de la luz):</label>
-                    <input type="number" id="speed-input" value="50" min="1" max="100">
+                    <input type="number" id="speed-input" class="form-control" value="${lastSpeed}" min="1" max="100">
                     <button type="submit">Calcular Viaje</button>
                 </form>
-                <div id="result-container" style="display:none;">
+                <div id="result-container" class="result-container" style="display:none;">
                     <h3>Resultado del Viaje</h3>
                     <p id="result-text"></p>
                 </div>
             </section>
         `;
         const form = document.getElementById('simulator-form');
+        const planetSelect = document.getElementById('planet-select');
+        const distanceInput = document.getElementById('distance-input');
+
+        // Lógica para que los dos inputs no sean simultáneos
+        planetSelect.addEventListener('change', () => {
+            if (planetSelect.value) {
+                distanceInput.disabled = true;
+                distanceInput.value = '';
+            } else {
+                distanceInput.disabled = false;
+            }
+        });
+        distanceInput.addEventListener('input', () => {
+            if (distanceInput.value) {
+                planetSelect.disabled = true;
+                planetSelect.value = '';
+            } else {
+                planetSelect.disabled = false;
+            }
+        });
+        
         if (form) form.addEventListener('submit', handleSimulatorSubmit);
     };
 
     const handleSimulatorSubmit = event => {
         event.preventDefault();
-        const [planetSelect, distanceInput, speedInput] = 
+        const [planetSelect, distanceInput, speedInput] =
             ['planet-select', 'distance-input', 'speed-input'].map(id => document.getElementById(id));
         
-        const distance = parseFloat(distanceInput.value) || parseFloat(planetSelect.value);
+        const selectedDistance = planetSelect.value ? parseFloat(planetSelect.value) : null;
+        const enteredDistance = distanceInput.value ? parseFloat(distanceInput.value) : null;
+        
+        const distance = selectedDistance || enteredDistance;
         const speed = parseFloat(speedInput.value) / 100;
 
-        if (isNaN(distance) || distance <= 0 || isNaN(speed) || speed <= 0) {
-            return Swal.fire({ icon: 'warning', title: 'Datos Inválidos', text: 'Ingrese valores positivos.' });
+        if (isNaN(distance) || distance <= 0 || isNaN(speed) || speed <= 0 || speed > 1) {
+            Swal.fire({ 
+                icon: 'warning', 
+                title: 'Datos Inválidos', 
+                text: 'Por favor, ingrese valores numéricos y positivos. La velocidad debe ser entre 1 y 100.' 
+            });
+            return;
         }
 
         localStorage.setItem('lastTravelDistance', distance);
+        localStorage.setItem('lastTravelSpeed', speedInput.value);
+        
         const travelTime = (distance / speed).toFixed(2);
         
-        const [resultContainer, resultText] = 
+        const [resultContainer, resultText] =
             ['result-container', 'result-text'].map(id => document.getElementById(id));
         
         resultText.textContent = `El viaje duraría aproximadamente ${travelTime} años terrestres.`;
@@ -127,7 +162,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
-    // === Inicialización del App ===
+    // === Inicialización de la Aplicación ===
     const initApp = async () => {
         planetsData = await fetchPlanetsData();
         if (canvas) {
@@ -142,7 +177,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         menuButton?.addEventListener('click', () => toggleNav(true));
         closeBtn?.addEventListener('click', () => toggleNav(false));
         window.addEventListener('resize', resizeCanvas);
-        document.querySelectorAll('.sidenav a').forEach(link => 
+        document.querySelectorAll('.sidenav a').forEach(link =>
             link.addEventListener('click', e => {
                 e.preventDefault();
                 window.location.hash = e.currentTarget.getAttribute('href');
